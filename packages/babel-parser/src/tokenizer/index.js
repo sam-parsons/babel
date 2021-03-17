@@ -792,6 +792,10 @@ export default class Tokenizer extends ParserErrors {
           this.input.charCodeAt(this.state.pos + 1) === charCodes.colon
         ) {
           this.finishOp(tt.doubleColon, 2);
+        }
+        // needs literal replacement with charCodes = property
+        else if (this.input.charCodeAt(this.state.pos + 1) === 61) {
+          this.finishOp(tt.walrus, 2);
         } else {
           ++this.state.pos;
           this.finishToken(tt.colon);
